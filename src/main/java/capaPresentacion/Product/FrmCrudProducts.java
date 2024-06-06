@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package capaPresentacion;
+package capaPresentacion.Product;
+
+import capaLogica.Products.ProductDAO;
+import java.sql.Connection;
 
 /**
  *
@@ -14,6 +17,8 @@ public class FrmCrudProducts extends javax.swing.JFrame {
     /**
      * Creates new form FrmClient
      */
+    
+    private Connection conexion;
     public FrmCrudProducts() {
         initComponents();
     }
@@ -63,6 +68,11 @@ public class FrmCrudProducts extends javax.swing.JFrame {
         btnSave.setText("Guardar");
 
         btnDelete.setText("Eliminar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Salir");
 
@@ -180,8 +190,13 @@ public class FrmCrudProducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
-        // TODO add your handling code here:
+     ProductDAO product = new ProductDAO(conexion);
+     product.eliminarProducto(WIDTH);
     }//GEN-LAST:event_txtCategoryActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments

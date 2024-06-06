@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package capaPresentacion;
+package capaPresentacion.Order;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import capaLogica.Conexion;
-import capaLogica.ProductDAO; // Importar la clase ProductDAO
-import capaLogica.Product; // Importar la clase Product
+import capaLogica.Products.ProductDAO; // Importar la clase ProductDAO
+import capaLogica.Products.Product; // Importar la clase Product
 import java.sql.Connection;
 import java.util.List;
 
@@ -17,12 +17,12 @@ import java.util.List;
  *
  * @author solor
  */
-public class Products extends javax.swing.JFrame {
+public class FrmCrudOrder extends javax.swing.JFrame {
 
     private Connection conexion;
     private List<Product> products;
 
-    public Products() {
+    public FrmCrudOrder() {
         initComponents();
         ProductDAO productDAO = new ProductDAO(conexion);
         products = productDAO.obtenerProductos();
@@ -242,21 +242,24 @@ public class Products extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Products.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCrudOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Products.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCrudOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Products.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCrudOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Products.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmCrudOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Products().setVisible(true);
+                new FrmCrudOrder().setVisible(true);
             }
         });
     }

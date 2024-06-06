@@ -1,5 +1,5 @@
 // Product.java
-package capaLogica;
+package capaLogica.Products;
 
     // Clase auxiliar para representar un Producto
     public class Product {

@@ -1,8 +1,9 @@
-package capaLogica;
+package capaLogica.Main;
 
 import capaLogica.Conexion;
-import capaLogica.Product;
-import capaLogica.ProductDAO;
+import capaLogica.Conexion;
+import capaLogica.Products.Product;
+import capaLogica.Products.ProductDAO;
 
 import java.sql.Connection;
 import java.util.List;

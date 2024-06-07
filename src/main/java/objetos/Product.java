@@ -1,5 +1,5 @@
 // Product.java
-package capaLogica.Products;
+package objetos;
 
     // Clase auxiliar para representar un Producto
     public class Product {
@@ -8,14 +8,16 @@ package capaLogica.Products;
         private int codigoTipoProducto;
         private String nombreProducto;
         private double precioUnitario;
+        private int codigo_bodega;
 
-        public Product(int codigoProducto, int codigoDescuento, int codigoTipoProducto, String nombreProducto, double precioUnitario) {
-            this.codigoProducto = codigoProducto;
-            this.codigoDescuento = codigoDescuento;
-            this.codigoTipoProducto = codigoTipoProducto;
-            this.nombreProducto = nombreProducto;
-            this.precioUnitario = precioUnitario;
-        }
+    public Product(int codigoProducto, int codigoDescuento, int codigoTipoProducto, String nombreProducto, double precioUnitario, int codigo_bodega) {
+        this.codigoProducto = codigoProducto;
+        this.codigoDescuento = codigoDescuento;
+        this.codigoTipoProducto = codigoTipoProducto;
+        this.nombreProducto = nombreProducto;
+        this.precioUnitario = precioUnitario;
+        this.codigo_bodega = codigo_bodega;
+    }
 
     public int getCodigoProducto() {
         return codigoProducto;
@@ -56,5 +58,19 @@ package capaLogica.Products;
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
-        
+
+    public int getCodigo_bodega() {
+        return codigo_bodega;
+    }
+
+    public void setCodigo_bodega(int codigo_bodega) {
+        this.codigo_bodega = codigo_bodega;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "codigoProducto=" + codigoProducto + ", codigoDescuento=" + codigoDescuento + ", codigoTipoProducto=" + codigoTipoProducto + ", nombreProducto=" + nombreProducto + ", precioUnitario=" + precioUnitario + ", codigo_bodega=" + codigo_bodega + '}';
+    }
+
+      
 }

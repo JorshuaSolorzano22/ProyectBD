@@ -2,7 +2,7 @@ package capaLogica.Main;
 
 import capaLogica.Conexion;
 import capaLogica.Conexion;
-import capaLogica.Products.Product;
+import objetos.Product;
 import capaLogica.Products.ProductDAO;
 
 import java.sql.Connection;

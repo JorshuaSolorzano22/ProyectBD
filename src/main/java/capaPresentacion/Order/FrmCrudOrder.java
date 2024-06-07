@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import capaLogica.Conexion;
 import capaLogica.Products.ProductDAO; // Importar la clase ProductDAO
-import capaLogica.Products.Product; // Importar la clase Product
+import objetos.Product; // Importar la clase Product
 import java.sql.Connection;
 import java.util.List;
 

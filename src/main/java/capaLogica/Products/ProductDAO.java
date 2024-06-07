@@ -1,5 +1,6 @@
 package capaLogica.Products;
 
+import objetos.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,8 @@ public List<Product> obtenerProductos() {
             int codigoTipoProducto = resultSet.getInt("C_Tipo_Producto");
             String nombreProducto = resultSet.getString("D_Nombre_Producto");
             double precioUnitario = resultSet.getDouble("M_Precio_Unitario");
-            Product producto = new Product(codigoProducto, codigoDescuento, codigoTipoProducto, nombreProducto, precioUnitario);
+            int codigo_bodega = resultSet.getInt("C_Bodega");
+            Product producto = new Product(codigoProducto, codigoDescuento, codigoTipoProducto, nombreProducto, precioUnitario, codigo_bodega);
             productos.add(producto);
         }
 

@@ -183,7 +183,7 @@ public class FrmCrudProducts extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblClient);
 
-        jMenu6.setText("File");
+        jMenu6.setText("Agregar producto");
         jMenuBar3.add(jMenu6);
 
         jMenu9.setText("jMenu9");

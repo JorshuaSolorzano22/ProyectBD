@@ -17,7 +17,7 @@ public class Proveedores {
   private double m_saldo_proveedor;
   private int c_telefono;
   private int c_sucursal;
-  private int codigo_bodega;
+  private int C_Producto_En_Bodega;
 
     public Proveedores(int c_proveedor, String d_descr_proveedor, Date f_dia_entrega, double m_saldo_proveedor, int c_telefono, int c_sucursal, int codigo_bodega) {
         this.c_proveedor = c_proveedor;
@@ -26,7 +26,7 @@ public class Proveedores {
         this.m_saldo_proveedor = m_saldo_proveedor;
         this.c_telefono = c_telefono;
         this.c_sucursal = c_sucursal;
-        this.codigo_bodega = codigo_bodega;
+        this.C_Producto_En_Bodega = codigo_bodega;
     }
 
     public int getC_proveedor() {
@@ -78,16 +78,16 @@ public class Proveedores {
     }
 
     public int getCodigo_bodega() {
-        return codigo_bodega;
+        return C_Producto_En_Bodega;
     }
 
     public void setCodigo_bodega(int codigo_bodega) {
-        this.codigo_bodega = codigo_bodega;
+        this.C_Producto_En_Bodega = codigo_bodega;
     }
 
     @Override
     public String toString() {
-        return "Proveedores{" + "c_proveedor=" + c_proveedor + ", d_descr_proveedor=" + d_descr_proveedor + ", f_dia_entrega=" + f_dia_entrega + ", m_saldo_proveedor=" + m_saldo_proveedor + ", c_telefono=" + c_telefono + ", c_sucursal=" + c_sucursal + ", codigo_bodega=" + codigo_bodega + '}';
+        return "Proveedores{" + "c_proveedor=" + c_proveedor + ", d_descr_proveedor=" + d_descr_proveedor + ", f_dia_entrega=" + f_dia_entrega + ", m_saldo_proveedor=" + m_saldo_proveedor + ", c_telefono=" + c_telefono + ", c_sucursal=" + c_sucursal + ", codigo_bodega=" + C_Producto_En_Bodega + '}';
     }
   
   

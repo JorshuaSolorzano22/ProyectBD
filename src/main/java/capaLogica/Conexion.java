@@ -12,13 +12,12 @@ public class Conexion {
 
     private Conexion() {
         try {
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=KFSURR;user=Jorshuabd;password=root2;trustServerCertificate=true";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=KFSURR;user=KFSur;password=Cesar2002.;trustServerCertificate=true";
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
             connection = DriverManager.getConnection(url);
             System.out.println("Connection successful!");
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
             System.out.println("Connection failed: " + e.getMessage());
         }
     }
@@ -41,7 +40,6 @@ public class Conexion {
                 System.out.println("Connection closed.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println("Failed to close connection: " + e.getMessage());
         }
     }

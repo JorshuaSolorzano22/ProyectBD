@@ -1,40 +1,32 @@
 package capaLogica.Main;
 
 import capaLogica.Conexion;
-import capaLogica.Conexion;
 import objetos.Product;
 import capaLogica.Products.ProductDAO;
-
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Obtener la conexión a la base de datos
         Conexion conexion = Conexion.getInstance();
         Connection connection = conexion.getConnection();
 
-        // Crear una instancia de ProductDAO
-        ProductDAO productDAO = new ProductDAO(connection);
+        CallableStatement cs = connection.prepareCall("EXEC select_products");
 
-        // Crear un nuevo producto
-        productDAO.crearProducto(1, 1, "Hamburguesa Doble", 25.99);
+        cs.execute();
 
-        // Obtener todos los productos
-        List<Product> productos = productDAO.obtenerProductos();
-        for (Product producto : productos) {
-            System.out.println("Código: " + producto.getCodigoProducto());
-            System.out.println("Nombre: " + producto.getNombreProducto());
-            System.out.println("Precio: " + producto.getPrecioUnitario());
-            System.out.println("Categoría: " + producto.getCodigoTipoProducto());
-            System.out.println("---");
+        ResultSet resultSet = cs.getResultSet();
+
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("D_Nombre_Producto");
+            int precio = resultSet.getInt("M_Precio_Unitario");
+
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Precio: " + precio);
         }
-
-        // Actualizar un producto
-        productDAO.actualizarProducto(1, 2, 2, "Hamburguesa Súper Doble", 29.99);
-
-        // Eliminar un producto
-        productDAO.eliminarProducto(1);
 
         // Cerrar la conexión
         conexion.closeConnection();

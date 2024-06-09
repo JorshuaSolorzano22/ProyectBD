@@ -10,6 +10,9 @@ package objetos;
         private double precioUnitario;
         private int C_Producto_En_Bodega;
 
+    public Product() {
+    }
+    
     public Product(int codigoProducto, int codigoDescuento, int codigoTipoProducto, String nombreProducto, double precioUnitario, int codigo_bodega) {
         this.codigoProducto = codigoProducto;
         this.codigoDescuento = codigoDescuento;

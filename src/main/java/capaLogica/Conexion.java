@@ -12,7 +12,10 @@ public class Conexion {
 
     public Conexion() {
         try {
+
             String url = "jdbc:sqlserver://localhost:1433;databaseName=KFSURR;user=Jorshuabd;password=root2;trustServerCertificate=true";
+
+
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
             connection = DriverManager.getConnection(url);

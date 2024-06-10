@@ -15,6 +15,9 @@
                     <source>22</source>
                     <target>22</target>
                     <showDeprecation>true</showDeprecation>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

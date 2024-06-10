@@ -264,4 +264,8 @@ public class FrmCrudProducts extends javax.swing.JFrame {
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    void setPi(Productos_Interface aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

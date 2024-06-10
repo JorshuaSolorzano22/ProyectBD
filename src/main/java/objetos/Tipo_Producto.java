@@ -12,6 +12,9 @@ public class Tipo_Producto {
    private int c_tipo_producto;
    private String d_tipo_producto;
 
+    public Tipo_Producto() {
+    }
+   
     public Tipo_Producto(int c_tipo_producto, String d_tipo_producto) {
         this.c_tipo_producto = c_tipo_producto;
         this.d_tipo_producto = d_tipo_producto;

@@ -1,25 +1,29 @@
 package capaPresentacion.Order;
 
-import capaLogica.Products.ProductDAO;
+import capaLogica.Conexion;
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import objetos.Product;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-
+import capaPresentacion.Order.Order;
 /**
  *
  * @author solor
  */
 public class FrmMenu extends javax.swing.JFrame {
 
-    private List<Product> products;
-    private ProductDAO productDAO;
-    private Connection conexion;
-    
-    
-    public FrmMenu() {
+    private Connection conect;
+    private DefaultTableModel model;
+
+    public FrmMenu() throws SQLException {
+         super("MENÚ KFSUR GOLFITO");
         initComponents();
-        productDAO = new ProductDAO(conexion); // Supongo que tienes una instancia de conexión válida
+        setLocationRelativeTo(null);
+        conect = Conexion.getInstance().getConnection();
+        model = (DefaultTableModel) tblCargarDatos.getModel();
         cargarDatosDesdeBaseDatos();
     }
 
@@ -33,72 +37,97 @@ public class FrmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        hacerPedido = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCargarDatos = new javax.swing.JTable();
+        mostrarOrder = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        menuOrder = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Menú");
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Menú KFSUR");
+
+        hacerPedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        hacerPedido.setText("Hacer pedido");
+        hacerPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hacerPedidoActionPerformed(evt);
+            }
+        });
 
         tblCargarDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Producto", "Precio (₡)"
             }
         ));
         jScrollPane2.setViewportView(tblCargarDatos);
+
+        mostrarOrder.setPreferredSize(new java.awt.Dimension(719, 343));
+
+        javax.swing.GroupLayout mostrarOrderLayout = new javax.swing.GroupLayout(mostrarOrder);
+        mostrarOrder.setLayout(mostrarOrderLayout);
+        mostrarOrderLayout.setHorizontalGroup(
+            mostrarOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 719, Short.MAX_VALUE)
+        );
+        mostrarOrderLayout.setVerticalGroup(
+            mostrarOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 343, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hacerPedido)
+                .addGap(65, 65, 65))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mostrarOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(hacerPedido))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrarOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jMenu1.setText("Menú");
-        jMenuBar1.add(jMenu1);
-
-        menuOrder.setText("Hacer pedido");
-        menuOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuOrderActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(menuOrder);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,40 +139,38 @@ public class FrmMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOrderActionPerformed
-        FrmCrudOrder frmCrudOrder = new FrmCrudOrder();
-        frmCrudOrder.setVisible(true);
-    }//GEN-LAST:event_menuOrderActionPerformed
+    private void hacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacerPedidoActionPerformed
+        Order order = new Order();
+        mostrarOrder.add(order);
+        order.setVisible(true);
+    }//GEN-LAST:event_hacerPedidoActionPerformed
 
-    private void cargarDatosDesdeBaseDatos() {
-        products = productDAO.obtenerProductos();
+    public void cargarDatosDesdeBaseDatos() throws SQLException {
+        CallableStatement cs = conect.prepareCall("EXEC select_products");
+        cs.execute();
+        ResultSet resultSet = cs.getResultSet();
 
-        // Crear un modelo de tabla con los datos obtenidos
-        String[] columnNames = {"Nombre", "Precio"};
-        Object[][] data = new Object[products.size()][columnNames.length];
+        while (resultSet.next()) {
+            Object[] product = new Object[2];
+            model = (DefaultTableModel) tblCargarDatos.getModel();
+            while (resultSet.next()) {
+                product[0] = resultSet.getString("D_Nombre_Producto");
+                product[1] = resultSet.getInt("M_Precio_Unitario");
 
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            data[i][0] = product.getNombreProducto();
-            data[i][1] = product.getPrecioUnitario();
-            
+                model.addRow(product);
+
+            }
+            tblCargarDatos.setModel(model);
         }
-
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        tblCargarDatos.setModel(model);
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -166,21 +193,25 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMenu().setVisible(true);
+                try {
+                    new FrmMenu().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FrmMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hacerPedido;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JMenu menuOrder;
+    private javax.swing.JDesktopPane mostrarOrder;
     private javax.swing.JTable tblCargarDatos;
     // End of variables declaration//GEN-END:variables
 }

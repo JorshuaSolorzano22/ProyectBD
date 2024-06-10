@@ -9,24 +9,29 @@ package objetos;
  * @author solor
  */
 public class Bodega {
-    private int codigo_bodega;
+    private int C_Producto_En_Bodega;
     private int cantidad_bodega;
     private String unidad_medida;
     private int codigo_sucursal;
+    private int N_Bodega;
 
-    public Bodega(int codigo_bodega, int cantidad_bodega, String unidad_medida, int codigo_sucursal) {
-        this.codigo_bodega = codigo_bodega;
+    public Bodega() {
+    }
+
+    public Bodega(int C_Producto_En_Bodega, int cantidad_bodega, String unidad_medida, int codigo_sucursal, int N_Bodega) {
+        this.C_Producto_En_Bodega = C_Producto_En_Bodega;
         this.cantidad_bodega = cantidad_bodega;
         this.unidad_medida = unidad_medida;
         this.codigo_sucursal = codigo_sucursal;
+        this.N_Bodega = N_Bodega;
     }
 
-    public int getCodigo_bodega() {
-        return codigo_bodega;
+    public int getC_Producto_En_Bodega() {
+        return C_Producto_En_Bodega;
     }
 
-    public void setCodigo_bodega(int codigo_bodega) {
-        this.codigo_bodega = codigo_bodega;
+    public void setC_Producto_En_Bodega(int C_Producto_En_Bodega) {
+        this.C_Producto_En_Bodega = C_Producto_En_Bodega;
     }
 
     public int getCantidad_bodega() {
@@ -53,10 +58,19 @@ public class Bodega {
         this.codigo_sucursal = codigo_sucursal;
     }
 
+    public int getN_Bodega() {
+        return N_Bodega;
+    }
+
+    public void setN_Bodega(int N_Bodega) {
+        this.N_Bodega = N_Bodega;
+    }
+
     @Override
     public String toString() {
-        return "Bodega{" + "codigo_bodega=" + codigo_bodega + ", cantidad_bodega=" + cantidad_bodega + ", unidad_medida=" + unidad_medida + ", codigo_sucursal=" + codigo_sucursal + '}';
+        return "Bodega{" + "C_Producto_En_Bodega=" + C_Producto_En_Bodega + ", cantidad_bodega=" + cantidad_bodega + ", unidad_medida=" + unidad_medida + ", codigo_sucursal=" + codigo_sucursal + ", N_Bodega=" + N_Bodega + '}';
     }
+
     
     
 }

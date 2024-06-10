@@ -8,7 +8,7 @@ package objetos;
         private int codigoTipoProducto;
         private String nombreProducto;
         private double precioUnitario;
-        private int codigo_bodega;
+        private int C_Producto_En_Bodega;
 
     public Product(int codigoProducto, int codigoDescuento, int codigoTipoProducto, String nombreProducto, double precioUnitario, int codigo_bodega) {
         this.codigoProducto = codigoProducto;
@@ -16,9 +16,10 @@ package objetos;
         this.codigoTipoProducto = codigoTipoProducto;
         this.nombreProducto = nombreProducto;
         this.precioUnitario = precioUnitario;
-        this.codigo_bodega = codigo_bodega;
+        this.C_Producto_En_Bodega = codigo_bodega;
     }
 
+    
     public int getCodigoProducto() {
         return codigoProducto;
     }
@@ -60,16 +61,16 @@ package objetos;
     }
 
     public int getCodigo_bodega() {
-        return codigo_bodega;
+        return C_Producto_En_Bodega;
     }
 
     public void setCodigo_bodega(int codigo_bodega) {
-        this.codigo_bodega = codigo_bodega;
+        this.C_Producto_En_Bodega = codigo_bodega;
     }
 
     @Override
     public String toString() {
-        return "Product{" + "codigoProducto=" + codigoProducto + ", codigoDescuento=" + codigoDescuento + ", codigoTipoProducto=" + codigoTipoProducto + ", nombreProducto=" + nombreProducto + ", precioUnitario=" + precioUnitario + ", codigo_bodega=" + codigo_bodega + '}';
+        return "Product{" + "codigoProducto=" + codigoProducto + ", codigoDescuento=" + codigoDescuento + ", codigoTipoProducto=" + codigoTipoProducto + ", nombreProducto=" + nombreProducto + ", precioUnitario=" + precioUnitario + ", codigo_bodega=" + C_Producto_En_Bodega + '}';
     }
 
       

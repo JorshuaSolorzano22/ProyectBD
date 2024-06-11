@@ -4,9 +4,12 @@ import capaLogica.Conexion;
 import java.io.StringReader;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -249,8 +252,11 @@ public class Order extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnSaveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveOrderActionPerformed
-        try {
-            saveOrder(txtPedido);
+    try {
+            List<Producto_Pedido> listaProductos = new ArrayList<>();
+            List<Pedido_Combo> listaCombos = new ArrayList<>();
+            
+            saveOrder(txtPedido, listaProductos, listaCombos);
         } catch (SQLException ex) {
             Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,12 +284,10 @@ public class Order extends javax.swing.JInternalFrame {
 
     }
 
-    public void saveOrder(JTextArea txtPedido) throws SQLException {
+    public void saveOrder(JTextArea txtPedido, List<Producto_Pedido> listaProductos, List<Pedido_Combo> listaCombos) throws SQLException {
+        
         StringBuilder textBuilder = new StringBuilder("\n");
-        // ... (código existente para llenar textBuilder)
 
-        // Crear lista de productos
-        List<Producto_Pedido> listaProductos = new ArrayList<>();
         String selectedP = (String) cmbPollo.getSelectedItem();
         int quantityP = (int) spnPollo.getValue();
         if (!selectedP.equals("Elegir...") && quantityP > 0) {
@@ -300,8 +304,6 @@ public class Order extends javax.swing.JInternalFrame {
             listaProductos.add(new Producto_Pedido(selectedSalad, quantitySalad));
         }
 
-        // Crear lista de combos
-        List<Pedido_Combo> listaCombos = new ArrayList<>();
         String selectedCombo = (String) cmbCombo.getSelectedItem();
         int quantityCombos = (int) spnCombos.getValue();
         if (!selectedCombo.equals("Elegir...") && quantityCombos > 0) {
@@ -309,60 +311,111 @@ public class Order extends javax.swing.JInternalFrame {
         }
 
         txtPedido.setText(textBuilder.toString());
+        
+        
+            String D_Num_Mesa = null;
+            String D_Observacion = null;
+            Time F_Duracion_Entrega_Pedido = null;
+            Date F_Inicio = null;
+            Date F_Final = null;
+            Date F_Duracion = null;
+            String C_Sucursal = null;
 
-        // Construir el XML de productos
-        StringBuilder sbProductos = new StringBuilder();
-        sbProductos.append("<Productos>");
-        for (Producto_Pedido producto : listaProductos) {
-            sbProductos.append("<Producto>");
-            sbProductos.append("<C_Producto>").append(producto.getCodigoProducto()).append("</C_Producto>");
-            sbProductos.append("<Q_Producto>").append(producto.getQ_producto()).append("</Q_Producto>");
-            sbProductos.append("</Producto>");
-        }
-        sbProductos.append("</Productos>");
+            int C_Pedido = insertarPedido(D_Num_Mesa, D_Observacion, F_Duracion_Entrega_Pedido, F_Inicio, F_Final, F_Duracion, C_Sucursal);
 
-        // Construir el XML de combos
-        StringBuilder sbCombos = new StringBuilder();
-        sbCombos.append("<Combos>");
-        for (Pedido_Combo combo : listaCombos) {
-            sbCombos.append("<Combo>");
-            sbCombos.append("<C_Combo>").append(combo.getC_Combo()).append("</C_Combo>");
-            sbCombos.append("<Q_Combo>").append(combo.getQuantity()).append("</Q_Combo>");
-            sbCombos.append("</Combo>");
-        }
-        sbCombos.append("</Combos>");
+            for (Producto_Pedido producto : listaProductos) {
+                int productoId = getProductoId(producto.getSelected());
+                insertarProductoPedido(C_Pedido, productoId, producto.getQuantity());
+            }
 
-        Pedido pedido = new Pedido();
-        int C_Pedido = pedido.getC_pedido();
-        String D_Num_Mesa = "001";
-        String D_Observacion = "Ninguna";
-        java.sql.Time F_Duracion_Entrega_Pedido = new java.sql.Time(10, 0, 0); // 10:00:00 (10 minutos)
-        java.sql.Date F_Inicio = new java.sql.Date(System.currentTimeMillis());
-        java.sql.Date F_Final = null; // Se calculará en el procedimiento almacenado
-        java.sql.Date F_Duracion = null; // Se calculará en el procedimiento almacenado
-        String C_Sucursal = "01";
+            for (Pedido_Combo combo : listaCombos) {
+                int comboId = getComboId(combo.getSelected());
+                insertarPedidoCombo(C_Pedido, comboId, combo.getQuantity());
+            }
 
-        String xmlProductos = sbProductos.toString();
-        String xmlCombos = sbCombos.toString();
+            saveOrder(txtPedido, listaProductos, listaCombos);
 
-        // Llamar al procedimiento almacenado
-        CallableStatement stmt = conexion.prepareCall("{CALL InsertarPedido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-        stmt.setInt(1, C_Pedido);
-        stmt.setString(2, D_Num_Mesa);
-        stmt.setString(3, D_Observacion);
-        stmt.setTime(4, F_Duracion_Entrega_Pedido);
-        stmt.setDate(5, F_Inicio);
-        stmt.setDate(6, F_Final);
-        stmt.setDate(7, F_Duracion);
-        stmt.setString(8, C_Sucursal);
+    }
 
-        StringReader xmlProductosReader = new StringReader(xmlProductos);
-        StringReader xmlCombosReader = new StringReader(xmlCombos);
-
-        stmt.setCharacterStream(9, xmlProductosReader);
-        stmt.setCharacterStream(10, xmlCombosReader);
-
+    public int insertarPedido(String D_Num_Mesa, String D_Observacion, Time F_Duracion_Entrega_Pedido, Date F_Inicio, Date F_Final, Date F_Duracion, String C_Sucursal) throws SQLException {
+        Connection con = Conexion.getInstance().getConnection();
+        CallableStatement stmt = con.prepareCall("{EXEC InsertarPedido(?, ?, ?, ?, ?, ?, ?, ?)}");
+        stmt.setString(1, D_Num_Mesa);
+        stmt.setString(2, D_Observacion);
+        stmt.setTime(3, F_Duracion_Entrega_Pedido);
+        stmt.setDate(4, F_Inicio);
+        stmt.setDate(5, F_Final);
+        stmt.setDate(6, F_Duracion);
+        stmt.setString(7, C_Sucursal);
+        stmt.registerOutParameter(8, Types.INTEGER);
         stmt.execute();
+
+        int C_Pedido = stmt.getInt(8);
+
+        stmt.close();
+        con.close();
+
+        return C_Pedido;
+    }
+
+    private int getProductoId(String nombreProducto) throws SQLException {
+        Connection con = Conexion.getInstance().getConnection();
+        CallableStatement stmt = con.prepareCall("{EXEC ObtenerIdProducto(?)}");
+        stmt.setString(1, nombreProducto);
+        stmt.execute();
+
+        ResultSet rs = stmt.getResultSet();
+        int C_Producto = 0;
+        if (rs.next()) {
+            C_Producto = rs.getInt(1);
+        }
+
+        rs.close();
+        stmt.close();
+        con.close();
+
+        return C_Producto;
+    }
+
+    private void insertarProductoPedido(int IdPedido, int IdProducto, int Cantidad) throws SQLException {
+        Connection con = Conexion.getInstance().getConnection();
+        CallableStatement stmt = con.prepareCall("{EXEC InsertarProductoPedido(?, ?, ?)}");
+        stmt.setInt(1, IdPedido);
+        stmt.setInt(2, IdProducto);
+        stmt.setInt(3, Cantidad);
+        stmt.execute();
+        stmt.close();
+        con.close();
+    }
+
+    private int getComboId(String NombreCombo) throws SQLException {
+        Connection con = Conexion.getInstance().getConnection();
+        CallableStatement stmt = con.prepareCall("{EXEC ObtenerIdCombo(?)}");
+        stmt.setString(1, NombreCombo);
+        stmt.execute();
+
+        ResultSet rs = stmt.getResultSet();
+        int C_Combo = 0;
+        if (rs.next()) {
+            C_Combo = rs.getInt(1);
+        }
+
+        rs.close();
+        stmt.close();
+        con.close();
+
+        return C_Combo;
+    }
+
+    private void insertarPedidoCombo(int IdPedido, int IdCombo, int Cantidad) throws SQLException {
+        Connection con = Conexion.getInstance().getConnection();
+        CallableStatement stmt = con.prepareCall("{EXEC InsertarPedidoCombo(?, ?, ?)}");
+        stmt.setInt(1, IdPedido);
+        stmt.setInt(2, IdCombo);
+        stmt.setInt(3, Cantidad);
+        stmt.execute();
+        stmt.close();
+        con.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

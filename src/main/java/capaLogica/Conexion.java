@@ -7,12 +7,15 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    private static Conexion instance;
-    private Connection connection;
+    public static Conexion instance;
+    public Connection connection;
 
-    private Conexion() {
+    public Conexion() {
         try {
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=KFSURR;user=KFSur;password=Cesar2002.;trustServerCertificate=true";
+
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=KFSURR;user=KFSUR;password=Cesar2002.;trustServerCertificate=true";
+
+
             String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(driver);
             connection = DriverManager.getConnection(url);

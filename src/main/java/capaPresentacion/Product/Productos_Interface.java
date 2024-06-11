@@ -19,10 +19,10 @@ public class Productos_Interface extends javax.swing.JFrame {
 
     static Metodos_Productos metodos = new Metodos_Productos();
     static ArrayList<Product> productos = new ArrayList<>();
-
     /**
      * Creates new form Productos_Interface
      */
+    
     public Productos_Interface() {
         initComponents();
     }

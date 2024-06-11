@@ -22,6 +22,7 @@ package objetos;
         this.C_Producto_En_Bodega = codigo_bodega;
     }
 
+    
     public int getCodigoProducto() {
         return codigoProducto;
     }

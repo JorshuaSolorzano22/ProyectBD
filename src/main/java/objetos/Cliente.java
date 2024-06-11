@@ -33,6 +33,10 @@ public class Cliente {
         this.c_direccion_fisica = c_direccion_fisica;
     }
 
+    public Cliente(int idCliente, String nombre, int telefono) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getC_cliente() {
         return c_cliente;
     }

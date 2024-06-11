@@ -31,6 +31,12 @@ public class Pedido {
         this.c_sucursal = c_sucursal;
     }
 
+    public Pedido() {
+        
+    }
+    
+    
+
     public int getC_pedido() {
         return c_pedido;
     }

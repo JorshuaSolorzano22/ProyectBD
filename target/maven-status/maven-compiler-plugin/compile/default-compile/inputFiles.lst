@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\objetos\Parametros.java
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\objetos\Producto_Pedido.java
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\objetos\DetLinea.java
@@ -40,3 +41,43 @@ C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\objetos\Puesto.java
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\objetos\Factura.java
 C:\Users\cesar\OneDrive\Escritorio\Primer_Semestre_2024\Base de datos\ProyectBD\src\main\java\capaLogica\Products\ProductDAO.java
+=======
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Menu.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\MetodoPago.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Puesto.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\DetLinea.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Producto_Menu.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Tipo_Producto.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Ingredientes.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\capaPresentacion\Order\FrmCrudOrder.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Combo.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Pago.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Direccion_Fisica.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Administracion.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Salario.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Tipo_Cliente.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Telefono.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Sucursal.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Distrito.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\capaLogica\Main\Main.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Proveedores.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Factura.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\capaLogica\Products\ProductDAO.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Provincia.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Producto_Pedido.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Cliente.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Colaborador.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Parametros.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Pedido.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Tipo_Pago.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Bodega.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Canton.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Combo_Producto.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\capaPresentacion\Product\FrmCrudProducts.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Horas_Laburadas.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\capaLogica\Conexion.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Tipo_Moneda.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Descuento.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Servicio_Expres.java
+C:\Users\solor\OneDrive\Documentos\BD\KFSUR\src\main\java\objetos\Product.java
+>>>>>>> fcbe2edf2d997ef8d5ffbee8f285c8242d77d29a

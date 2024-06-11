@@ -12,7 +12,6 @@ package capaPresentacion.Inicio;
 import capaPresentacion.Cliente.FrmCrudCliente;
 import capaPresentacion.Product.Productos_Interface;
 import capaPresentacion.Order.FrmCrudOrder;
-import capaPresentacion.Product.FrmCrudProducts;
 
 public class FrmCrudInicio extends javax.swing.JFrame {
 
